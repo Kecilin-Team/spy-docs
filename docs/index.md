@@ -3,7 +3,7 @@
 </h1>
 
 <p align="center">
-  <img src="assets/logo.png" alt="Logo" width="200">
+  <img src="https://raw.githubusercontent.com/Kecilin-Team/spy-docs/main/assets/logo.png" alt="Logo" width="200">
 </p>
 
 <p align="center">
