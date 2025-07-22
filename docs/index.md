@@ -1,8 +1,17 @@
-# Welcome to Superpygeon
-
 <div align="center">
-  <h2>🕊️ AI-Powered Video Analytics System</h2>
-  <p><strong>Superpygeon</strong> A comprehensive computer vision inference engine supporting multiple features and use cases for image detection, classification, segmentation, and recognition - all in one unified platform 🎯.</p>
+
+# Superpygeon 🔥
+
+<img src="assets/logo.png" alt="Logo" width="200">
+
+*"See beyond the ordinary, infer the extraordinary"* 
+
+A comprehensive computer vision inference engine supporting multiple features and use cases for image detection, classification, segmentation, and recognition - all in one unified platform 🎯.
+
+[![License](https://img.shields.io/badge/license-Apache-blue.svg)](LICENSE)
+[![Python](https://img.shields.io/badge/python-3.10+-blue.svg)](https://python.org)
+[![Docker](https://img.shields.io/badge/docker-ready-blue.svg)](https://docker.com)
+
 </div>
 
 ---
@@ -36,17 +45,6 @@ Get up and running with Superpygeon in minutes:
 - **Configurable Pipeline** - Visual configuration builder for easy setup
 - **RTSP/WebRTC Streaming** - Multiple output formats
 - **Scalable Architecture** - Microservices-based design
-
----
-
-## 📖 Documentation Structure
-
-### Getting Started
-- **[Installation Guide](installation.md)** - Complete setup instructions
-- **[Configuration Builder](config-builder.md)** - Visual configuration tool guide
-
-### Reference
-- **[Features Documentation](feature.md)** - Detailed feature specifications
 
 ---
 

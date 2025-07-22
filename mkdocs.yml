@@ -1,5 +1,5 @@
 site_name: Superpygeon Documentation
-site_url: https://assistxvision.github.io/superpygeon
+site_url: https://kecilin-team.github.io/spy-docs
 site_author: Kecilin Team
 site_description: Complete documentation for Superpygeon - AI-powered video analytics system
 
@@ -12,15 +12,15 @@ theme:
   palette:
     # Palette toggle for light mode
     - scheme: default
-      primary: blue
-      accent: blue
+      primary: black
+      accent: black
       toggle:
         icon: material/brightness-7
         name: Switch to dark mode
     # Palette toggle for dark mode
     - scheme: slate
-      primary: blue
-      accent: blue
+      primary: black
+      accent: black
       toggle:
         icon: material/brightness-4
         name: Switch to light mode
@@ -69,7 +69,7 @@ nav:
   - Home: index.md
   - Getting Started:
     - Installation: installation.md
-    - Configuration Builder: config-builder.md
+    - Config Builder: config-builder.md
   - Features: feature.md
 
 extra:
