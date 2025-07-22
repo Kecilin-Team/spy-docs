@@ -58,12 +58,14 @@ http://localhost:8000
 Access via "Draw Lines" button or `http://localhost:8000/drawLine.html`
 
 **Drawing Process**:
+
 1. **Load Image/Video**: Upload or specify source for drawing reference
 2. **Draw Lines**: Click two points to define a detection line
 3. **Set Direction**: Click a third point to specify detection direction
 4. **Configure Properties**: Set line type and bidirectional options
 
 **Keyboard Shortcuts**:
+
 - `Q`: Finish and save all lines
 - `C`: Clear all lines
 - `D`: Delete last line
@@ -89,6 +91,7 @@ Access via "Draw Regions" button or `http://localhost:8000/drawRegion.html`
 4. **Configure Detection**: Set detection modes for each region
 
 **Keyboard Shortcuts**:
+
 - `Q`: Finish and save all regions
 - `C`: Clear all regions
 - `D`: Delete last point or region
@@ -108,18 +111,21 @@ Access via "Draw Regions" button or `http://localhost:8000/drawRegion.html`
 
 ### Generate Configuration File
 
-1. **Complete All Sections**:
+#### 1. Complete All Sections:
+
    - Configure model parameters
    - Enable required features
    - Set input/output specifications
    - Draw necessary lines and regions
 
-2. **Generate YAML**:
+#### 2. Generate YAML:
+
    - Click "Generate Config" in the main interface
    - Review the generated YAML configuration
    - Validate all settings are correct
 
-3. **Export Options**:
+#### 3. Export Options:
+
    - Copy YAML to clipboard
    - Download as `.yaml` file
    - Save for later editing
