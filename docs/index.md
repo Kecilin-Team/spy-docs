@@ -1,5 +1,6 @@
-# Superpygeon 🔥
-{: .center}
+<h1 align="center">
+  Superpygeon 🔥
+</h1>
 
 <p align="center">
   <img src="assets/logo.png" alt="Logo" width="200">

@@ -72,6 +72,7 @@ Access via "Draw Lines" button or `http://localhost:8000/drawLine.html`
 - `2`: Set bidirectional mode
 
 **Line Properties**:
+
 - **Direction**: Configurable detection direction
 - **Type**: Different line types for various detection scenarios
 - **Bidirectional**: Support for two-way detection
@@ -81,6 +82,7 @@ Access via "Draw Lines" button or `http://localhost:8000/drawLine.html`
 Access via "Draw Regions" button or `http://localhost:8000/drawRegion.html`
 
 **Drawing Process**:
+
 1. **Load Image/Video**: Upload or specify source for drawing reference
 2. **Draw Polygon**: Click multiple points to define region boundaries
 3. **Complete Region**: Press `N` or click "New Region" to finish current polygon
@@ -95,6 +97,7 @@ Access via "Draw Regions" button or `http://localhost:8000/drawRegion.html`
 - `1`-`9`: Toggle different detection modes
 
 **Region Properties**:
+
 - **Detection Modes**: Multiple detection types per region
 - **Color Coding**: Visual differentiation with customizable colors
 - **Coordinate Precision**: 6-decimal place accuracy
@@ -177,11 +180,13 @@ metadata:
 ### Performance Optimization
 
 **Model Configuration**:
+
 - Use GPU device for better performance when available
 - Adjust confidence thresholds based on accuracy requirements
 - Select specific object classes to reduce processing overhead
 
 **Input Settings**:
+
 - Optimize `max_fps` based on detection requirements
 - Configure `max_queue` for smooth processing
 - Use appropriate input resolution
@@ -275,5 +280,6 @@ After creating configuration files:
 4. **Monitor**: Check performance and adjust parameters as needed
 
 For additional help:
+
 - [Installation Guide](installation.md)
 - [Feature Documentation](feature.md)

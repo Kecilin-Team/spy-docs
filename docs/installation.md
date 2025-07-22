@@ -34,6 +34,7 @@ Download all required resources from the following SharePoint link:
 [Superpygeon Resources](https://assistxenterprise.sharepoint.com/:f:/s/DataBadrut/ElRr79PAbMFPsumpdLqceA4B9aWurOupZtgZFBgIeZA9IQ?e=t3095d)
 
 Download the following files/folders:
+
 - `./config` (folder)
 - `./docker-compose.yml`
 - `./compose.builder.yaml`
@@ -73,6 +74,7 @@ For setting up the configuration builder, please refer to the [Config Builder Gu
 Place your generated configuration files to the `config/app/` directory.
 
 **Important Notes:**
+
 - Each configuration file should have a unique `cctv_id` in the metadata section
 - Multiple configuration files can be placed in `config/app/` for multiple cameras
 - Configuration files must have `.yaml` extension
@@ -89,6 +91,7 @@ docker-compose up -d
 ```
 
 This command will start the following services:
+
 - **Redis**: Message broker for communication between components
 - **MediaMTX**: RTSP/WebRTC streaming server
 - **Model Downloader**: Downloads required AI models

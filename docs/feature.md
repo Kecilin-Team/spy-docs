@@ -12,6 +12,7 @@ This document provides detailed information about all available features in Supe
 6. [OverTime](#overtime)
 7. [RegionCount](#regioncount)
 8. [RegionCrowd](#regioncrowd)
+9. [VehicleAnalysis](#vehicleanalysis)
 
 ---
 
@@ -37,13 +38,34 @@ Monitors region occupancy during specified time intervals and generates attendan
 | `timezone` | `pytz.timezone` | `pytz.timezone("Etc/GMT-7")` | Timezone for time calculations |
 
 ### Return Values
-Returns a list of dictionaries containing:
+Returns a dictionary in the following format:
+
+```json
+{
+    "data": [
+        {
+            "region_id": 1,
+            "duration": 3600,
+            "percentage": 85,
+            "start_time": "09:00:00",
+            "end_time": "17:00:00",
+            "region_type": "office"
+        }
+    ],
+    "cctv_id": "test/none",
+    "timestamp": "2024-08-14 10:00:39",
+    "image_id": "a94897b8-e002-4ed7-8b6b-af42cbfb58e4"
+}
+```
+
+**Data fields:**
+
 - `region_id`: ID of the monitored region
 - `duration`: Total occupancy duration in seconds
 - `percentage`: Occupancy percentage of the monitoring period
 - `start_time`: Monitoring start time
 - `end_time`: Monitoring end time
-- `region_type`: Type of region (if specified in region attributes)
+- `region_type`: Type of region (optional, if specified in region attributes)
 
 ---
 
@@ -53,7 +75,6 @@ Returns a list of dictionaries containing:
 Tracks how long objects stay in regions and reports when they exit after exceeding a minimum threshold.
 
 ### How it Works
-- Uses RegionTimeTracker to monitor object entry/exit events
 - Tracks duration each object spends in regions
 - Reports exit events only when duration exceeds the consistency threshold
 - Can capture and annotate exit frames
@@ -68,15 +89,36 @@ Tracks how long objects stay in regions and reports when they exit after exceedi
 | `consistency_threshold` | `int` | `15` | Minimum dwell time in seconds to report |
 
 ### Return Values
-Returns a list of dictionaries containing:
+Returns a dictionary in the following format:
+
+```json
+{
+    "data": [
+        {
+            "object_id": 1,
+            "region_id": 1,
+            "duration": 62,
+            "cls": "person",
+            "entry_time": "2025-07-17 11:09:19",
+            "exit_time": "2025-07-17 11:09:37",
+            "region_type": "teller"
+        }
+    ],
+    "cctv_id": "test/none",
+    "timestamp": "2024-08-14 10:00:39",
+    "image_id": "a94897b8-e002-4ed7-8b6b-af42cbfb58e4"
+}
+```
+
+**Data fields:**
+
 - `object_id`: ID of the object that exited
 - `region_id`: ID of the region
 - `duration`: Time spent in region (seconds)
 - `cls`: Object class name
-- `entry_time`: Timestamp when object entered (if available)
-- `exit_time`: Timestamp when object exited (if available)
-- `region_type`: Type of region (if specified)
-- `image`: Annotated exit frame (if available)
+- `entry_time`: Timestamp when object entered (optional)
+- `exit_time`: Timestamp when object exited (optional)
+- `region_type`: Type of region (optional)
 
 ---
 
@@ -86,7 +128,6 @@ Returns a list of dictionaries containing:
 Detects when objects cross defined lines and tracks crossing directions.
 
 ### How it Works
-- Uses LineCrossingTracker to monitor object movements
 - Detects when object centroids cross line boundaries
 - Supports different line types (upwards, downwards, bidirectional)
 - Can reset counters daily and handle recounting
@@ -101,7 +142,32 @@ Detects when objects cross defined lines and tracks crossing directions.
 | `allow_recounting` | `bool` | `True` | Whether to reset counters daily at midnight |
 
 ### Return Values
-Returns a dictionary containing line crossing events and current counts.
+Returns a dictionary in the following format:
+
+```json
+{
+    "data": [
+        {
+            "line_id": 1,
+            "object_id": 1,
+            "cls": "person",
+            "direction": "in",
+            "line_type": "entrance"
+        }
+    ],
+    "cctv_id": "test/none",
+    "timestamp": "2024-08-14 10:00:39",
+    "image_id": "a94897b8-e002-4ed7-8b6b-af42cbfb58e4"
+}
+```
+
+**Data fields:**
+
+- `line_id`: ID of the crossed line
+- `object_id`: ID of the object that crossed
+- `cls`: Object class name
+- `direction`: Crossing direction ("in" or "out")
+- `line_type`: Type of line (optional, if specified in line attributes)
 
 ---
 
@@ -133,14 +199,36 @@ Monitors meetings based on participant count in regions, tracking start/end time
 | `timezone` | `pytz.timezone` | `pytz.timezone("Etc/GMT-7")` | Timezone for timestamps |
 
 ### Return Values
-Returns a list of dictionaries containing:
+Returns a dictionary in the following format:
+
+```json
+{
+    "data": [
+        {
+            "region_id": 1,
+            "meeting_id": "a94897b8-e002-4ed7-8b6b-af42cbfb58e4",
+            "duration": 1800,
+            "max_participants": 5,
+            "status": "meeting_started",
+            "specific_participants_duration": 900,
+            "type": "conference_room"
+        }
+    ],
+    "cctv_id": "test/none",
+    "timestamp": "2024-08-14 10:00:39",
+    "image_id": "a94897b8-e002-4ed7-8b6b-af42cbfb58e4"
+}
+```
+
+**Data fields:**
+
 - `region_id`: ID of the meeting region
 - `meeting_id`: Unique meeting identifier
 - `duration`: Meeting duration in seconds
 - `max_participants`: Maximum participant count during meeting
 - `status`: "meeting_started" or "meeting_ended"
-- `specific_participants_duration`: Duration with specific participant count (if configured)
-- `type`: Region type (if specified)
+- `specific_participants_duration`: Duration with specific participant count (optional)
+- `type`: Region type (optional)
 
 ---
 
@@ -170,11 +258,31 @@ Detects violations based on spatial relationships between objects, checking for 
 | `negative_consistency_threshold` | `int` | `5` | Duration (seconds) without violation needed to resolve alert |
 
 ### Return Values
-Returns a list of dictionaries containing:
+Returns a dictionary in the following format:
+
+```json
+{
+    "data": [
+        {
+            "region_id": 1,
+            "object_id": 1,
+            "helmet": false,
+            "vest": true,
+            "region_type": "construction_area"
+        }
+    ],
+    "cctv_id": "test/none",
+    "timestamp": "2024-08-14 10:00:39",
+    "image_id": "a94897b8-e002-4ed7-8b6b-af42cbfb58e4"
+}
+```
+
+**Data fields:**
+
 - `region_id`: ID of the region
 - `object_id`: ID of the base object
-- `region_type`: Type of region (if specified)
-- Boolean flags for each mandatory/violation object presence
+- `region_type`: Type of region (optional)
+- Boolean flags for each mandatory/violation object presence (dynamic fields based on configuration)
 
 ---
 
@@ -184,7 +292,6 @@ Returns a list of dictionaries containing:
 Detects when objects stay in regions longer than allowed thresholds and generates overtime alerts.
 
 ### How it Works
-- Uses RegionTimeTracker to monitor object presence duration
 - Triggers alerts when objects exceed the configured time threshold
 - Can send repeated alerts at specified intervals
 - Tracks which objects are currently in overtime status
@@ -200,12 +307,32 @@ Detects when objects stay in regions longer than allowed thresholds and generate
 | `repeat_interval` | `Optional[int]` | `None` | Interval in seconds for repeating overtime alerts |
 
 ### Return Values
-Returns a list of dictionaries containing:
+Returns a dictionary in the following format:
+
+```json
+{
+    "data": [
+        {
+            "object_id": 1,
+            "region_id": 1,
+            "duration": 450,
+            "cls": "person",
+            "region_type": "no_loitering_zone"
+        }
+    ],
+    "cctv_id": "test/none",
+    "timestamp": "2024-08-14 10:00:39",
+    "image_id": "a94897b8-e002-4ed7-8b6b-af42cbfb58e4"
+}
+```
+
+**Data fields:**
+
 - `object_id`: ID of the object in overtime
 - `region_id`: ID of the region
 - `duration`: Time spent in region (seconds)
 - `cls`: Object class name
-- `region_type`: Type of region (if specified)
+- `region_type`: Type of region (optional)
 
 ---
 
@@ -228,11 +355,30 @@ Counts the number of objects of a specific class in designated regions.
 | `cls` | `str` | `None` | Class name to filter objects for counting (e.g., 'person', 'vehicle'). If None, no processing occurs |
 
 ### Return Values
-Returns a list of dictionaries containing:
+Returns a dictionary in the following format:
+
+```json
+{
+    "data": [
+        {
+            "region_id": 1,
+            "count": 15,
+            "cls": "vehicle",
+            "region_type": "parking_area"
+        }
+    ],
+    "cctv_id": "test/none",
+    "timestamp": "2024-08-14 10:00:39",
+    "image_id": "a94897b8-e002-4ed7-8b6b-af42cbfb58e4"
+}
+```
+
+**Data fields:**
+
 - `region_id`: ID of the region
 - `count`: Number of objects of specified class
 - `cls`: Object class name that was counted
-- `region_type`: Type of region (if specified)
+- `region_type`: Type of region (optional)
 
 ---
 
@@ -263,31 +409,168 @@ Detects crowd violations in regions based on object count thresholds (minimum, m
 | `cls` | `str` | `None` | Class name to filter objects for counting. If None, no processing occurs |
 
 ### Return Values
-Returns a list of dictionaries containing:
+Returns a dictionary in the following format:
 
 **For violations:**
-- `region_id`: ID of the region
-- `cls`: Object class that was counted
-- `count`: Current number of objects causing violation
-- `expected_count`/`min_count`/`max_count`: Configured thresholds
-- `status`: True (indicating active violation)
-- `event_id`: Unique event identifier (if send_resolved=True)
-- `region_type`: Type of region (if specified)
+
+```json
+{
+    "data": [
+        {
+            "region_id": 1,
+            "cls": "person",
+            "count": 8,
+            "max_count": 5,
+            "status": true,
+            "event_id": "a94897b8-e002-4ed7-8b6b-af42cbfb58e4",
+            "region_type": "elevator_cabin"
+        }
+    ],
+    "cctv_id": "test/none",
+    "timestamp": "2024-08-14 10:00:39",
+    "image_id": "a94897b8-e002-4ed7-8b6b-af42cbfb58e4"
+}
+```
 
 **For resolutions (if send_resolved=True):**
+
+```json
+{
+    "data": [
+        {
+            "region_id": 1,
+            "count": 4,
+            "max_count": 5,
+            "cls": "person",
+            "duration": 120,
+            "status": false,
+            "event_id": "a94897b8-e002-4ed7-8b6b-af42cbfb58e4",
+            "region_type": "elevator_cabin"
+        }
+    ],
+    "cctv_id": "test/none",
+    "timestamp": "2024-08-14 10:00:39",
+    "image_id": "a94897b8-e002-4ed7-8b6b-af42cbfb58e4"
+}
+```
+
+**Data fields:**
+
 - `region_id`: ID of the region
-- `count`: Current non-violating object count
-- `duration`: Total violation duration in seconds
-- `status`: False (indicating resolution)
-- `event_id`: Matching event identifier
-- `region_type`: Type of region (if specified)
+- `cls`: Object class that was counted
+- `count`: Current number of objects
+- `expected_count`/`min_count`/`max_count`: Configured thresholds (optional, based on configuration)
+- `status`: True for violations, False for resolutions
+- `duration`: Total violation duration in seconds (resolution only)
+- `event_id`: Unique event identifier (optional, if send_resolved=True)
+- `region_type`: Type of region (optional)
+
+---
+
+## VehicleAnalysis
+
+### Purpose
+Analyzes vehicle behavior in specified regions and/or lines, including automatic license plate recognition (ALPR) and overtime detection.
+
+### How it Works
+- Monitors vehicles in designated regions for overtime violations
+- Detects vehicle crossings at specified lines
+- Performs automatic license plate recognition on detected vehicles
+- Supports repeat alerting with configurable intervals
+- Uses cooldown mechanisms to prevent spam alerts
+
+### Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `timer` | `Timer` | Required | Timer instance to manage time-based operations |
+| `regions` | `Optional[List[Region]]` | `None` | List of regions to monitor for vehicle recognition |
+| `lines` | `Optional[List[Line]]` | `None` | List of lines to monitor for vehicle crossing |
+| `alpr_url` | `str` | `"172.17.0.1:7000"` | URL for the ALPR service |
+| `alpr_version` | `str` | `"v1"` | Version of the ALPR service |
+| `region_tracker` | `RegionTimeTracker` | `None` | Tracker for monitoring objects in regions |
+| `alert_threshold` | `int` | `300` | Time threshold in seconds before triggering an alert |
+| `centroid` | `str` | `"mid_centre"` | Centroid position for crossing detection |
+| `lost_threshold` | `int` | `30` | Number of frames before considering an object as lost |
+| `allow_recounting` | `bool` | `True` | Whether to reset counters daily at midnight |
+| `repeat_interval` | `Optional[int]` | `None` | Interval in seconds for repeating alerts |
+
+### Return Values
+Returns a dictionary in the following format:
+
+**For region-based vehicle analysis:**
+
+```json
+{
+    "data": [
+        {
+            "region_id": 1,
+            "object_id": 1,
+            "duration": 450,
+            "license_plate_number": "ABC123",
+            "license_plate_color": "white",
+            "vehicle_type": "car",
+            "type": "no_parking"
+        }
+    ],
+    "cctv_id": "test/none",
+    "timestamp": "2024-08-14 10:00:39",
+    "image_id": "a94897b8-e002-4ed7-8b6b-af42cbfb58e4"
+}
+```
+
+**For line-based vehicle analysis:**
+
+```json
+{
+    "data": [
+        {
+            "line_id": 1,
+            "object_id": 1,
+            "direction": "in",
+            "license_plate_number": "XYZ789",
+            "license_plate_color": "blue",
+            "vehicle_type": "truck",
+            "type": "access_control"
+        }
+    ],
+    "cctv_id": "test/none",
+    "timestamp": "2024-08-14 10:00:39",
+    "image_id": "a94897b8-e002-4ed7-8b6b-af42cbfb58e4"
+}
+```
+
+**Data fields:**
+
+- `region_id`: ID of the region (for region-based analysis)
+- `line_id`: ID of the line (for line-based analysis)
+- `object_id`: ID of the vehicle object
+- `duration`: Time spent in region in seconds (region-based only)
+- `direction`: Crossing direction "in" or "out" (line-based only)
+- `license_plate_number`: Detected license plate text or "None"
+- `license_plate_color`: Detected license plate color or "None"
+- `vehicle_type`: Vehicle class name
+- `type`: Region or line type (optional)
 
 ---
 
 ## Common Concepts
 
+### Standard Return Format
+All features return data in a standardized dictionary format:
+
+```json
+{
+    "data": [...],
+    "cctv_id": "camera_identifier",
+    "timestamp": "YYYY-MM-DD HH:MM:SS",
+    "image_id": "unique_image_identifier"
+}
+```
+
 ### Region Modes
 Each feature operates on regions with specific modes:
+
 - `attendance`: For attendance monitoring
 - `dwelltime`: For dwell time tracking
 - `meeting`: For meeting detection
@@ -295,17 +578,19 @@ Each feature operates on regions with specific modes:
 - `overtime`: For overtime monitoring
 - `regioncount`: For object counting
 - `regioncrowd`: For crowd violation detection
+- `vehicle_analysis`: For vehicle analysis
 
 ### Duration-Based Alerting
 Many features use duration-based alerting to prevent false positives:
+
 - `consistency_threshold`: How long a condition must persist before triggering
 - `negative_consistency_threshold`: How long the absence of a condition must persist before resolving
 
 ### Timezone Handling
 Features that work with time periods support timezone configuration for accurate local time calculations.
 
-### Return Data Structure
-Most features return lists of dictionaries containing event data, with common fields:
-- `region_id`: Identifier of the region where the event occurred
-- `region_type`: Type of region (if specified in region attributes)
-- Various feature-specific data fields
+### Metadata Fields
+- `cctv_id`: Identifier of the camera/source
+- `timestamp`: Current timestamp when the event was processed
+- `image_id`: Unique identifier for the current frame/image
+- `data`: Array containing the actual feature event data
