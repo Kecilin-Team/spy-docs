@@ -83,7 +83,22 @@ Place your generated configuration files to the `config/app/` directory.
 
 ## Running Superpygeon
 
-### Step 1: Start Services with Docker Compose
+### Step 1: Authenticate with Docker Registry
+
+Before starting the services, you need to authenticate with the AssistX Docker registry:
+
+```bash
+# Login to the AssistX Docker registry
+docker login registry.assistx.dev
+```
+
+When prompted, enter your credentials:
+- **Username**: Contact the AI team for your username
+- **Password**: Contact the AI team for your password
+
+**Note**: If you don't have registry credentials, please contact the AI team to obtain your username and password for `registry.assistx.dev`.
+
+### Step 2: Start Services with Docker Compose
 
 ```bash
 # Start all services
@@ -99,7 +114,7 @@ This command will start the following services:
 - **Feeder**: Processes video input and feeds frames to Redis
 - **App Superpygeon**: Main application processing pipeline
 
-### Step 2: Monitor Service Status
+### Step 3: Monitor Service Status
 
 ```bash
 # Check status of all services
@@ -112,7 +127,7 @@ docker-compose logs -f
 docker-compose logs -f app-superpygeon
 ```
 
-### Step 3: Access the Application
+### Step 4: Access the Application
 
 Once all services are running:
 
