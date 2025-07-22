@@ -93,6 +93,7 @@ docker login registry.assistx.dev
 ```
 
 When prompted, enter your credentials:
+
 - **Username**: Contact the AI team for your username
 - **Password**: Contact the AI team for your password
 
