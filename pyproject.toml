@@ -1,0 +1,115 @@
+[project]
+name = "superpygeon"
+version = "0.1.0"
+description = "Superpygeon Code Base"
+readme = "README.md"
+authors = [
+    { name = "Tulus Setiawan", email = "tulus751@gmail.com" },
+    { name = "Syahvan Alviansyah", email = "syahvanalviansyah91@gmail.com"},
+    { name = "Muhammad Daffa", email = "m.daffa2502@gmail.com"}
+]
+requires-python = ">=3.10"
+dependencies = [
+    "numpy>=2.1.1",
+    "opencv-python>=4.11.0.86",
+    "ovmsclient>=2023.1",
+    "pyarmor>=9.1.7",
+    "pyarmor-cli-core>=7.6.7",
+    "pyrootutils>=1.0.4",
+    "pytz>=2025.2",
+    "pyyaml>=6.0.2",
+    "redis>=6.2.0",
+    "requests>=2.32.3",
+    "schedule>=1.2.2",
+    "supertracker>=0.2.0",
+]
+
+[dependency-groups]
+dev = [
+    "ipykernel>=6.29.5",
+]
+docs = [
+    "mkdocs>=1.5.0",
+    "mkdocs-material>=9.4.0",
+    "mkdocs-minify-plugin>=0.7.0",
+    "pymdown-extensions>=10.0.0",
+]
+feeder = [
+    "numpy>=2.1.1",
+    "opencv-python>=4.11.0.86",
+    "pyyaml>=6.0.2",
+    "redis>=6.2.0",
+]
+test = [
+    "mypy>=1.17.0",
+    "pytest>=8.3.5",
+    "pytest-cov>=6.1.1",
+    "ruff>=0.12.4",
+]
+
+[tool.semantic_release]
+assets = []
+build_command_env = []
+commit_message = "Bump version: {version}"
+commit_parser = "angular"
+logging_use_named_masks = false
+major_on_zero = true
+allow_zero_version = true
+no_git_verify = false
+tag_format = "v{version}"
+version_variables = ["superpygeon/version.py:__version__"] 
+
+[tool.semantic_release.branches.main]
+match = "(main|master)"
+prerelease_token = "rc"
+prerelease = false
+
+[tool.semantic_release.changelog]
+mode = "init"
+template_dir = "templates"
+changelog_file = "CHANGELOG.md"
+exclude_commit_patterns = []
+
+[tool.semantic_release.changelog.environment]
+block_start_string = "{%"
+block_end_string = "%}"
+variable_start_string = "{{"
+variable_end_string = "}}"
+comment_start_string = "{#"
+comment_end_string = "#}"
+trim_blocks = false
+lstrip_blocks = false
+newline_sequence = "\n"
+keep_trailing_newline = false
+extensions = []
+autoescape = true
+
+[tool.semantic_release.commit_author]
+env = "GIT_COMMIT_AUTHOR"
+default = "semantic-release <semantic-release>"
+
+[tool.semantic_release.commit_parser_options]
+allowed_tags = ["build", "chore", "ci", "docs", "feat", "fix", "perf", "style", "refactor", "test", "big-change", "minor"]
+major_tags = ["big-change", "refactor"]
+minor_tags = ["feat"]
+patch_tags = ["fix", "perf", "minor", "chore"]
+default_bump_level = 0
+
+[tool.semantic_release.remote]
+name = "origin"
+type = "github"
+ignore_token_for_push = false
+insecure = false
+
+[tool.semantic_release.publish]
+dist_glob_patterns = ["dist/*"]
+upload_to_vcs_release = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-p no:cacheprovider -W ignore::DeprecationWarning"
+
+[tool.coverage.report]
+exclude_lines = [
+    'if __name__ == "__main__":'
+]

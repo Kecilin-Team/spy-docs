@@ -1,0 +1,82 @@
+site_name: Superpygeon Documentation
+site_url: https://assistxvision.github.io/superpygeon
+site_author: Kecilin Team
+site_description: Complete documentation for Superpygeon - AI-powered video analytics system
+
+repo_name: Kecilin-Team/spy-docs
+repo_url: https://github.com/Kecilin-Team/spy-docs
+edit_uri: edit/main/docs/
+
+theme:
+  name: material
+  palette:
+    # Palette toggle for light mode
+    - scheme: default
+      primary: blue
+      accent: blue
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    # Palette toggle for dark mode
+    - scheme: slate
+      primary: blue
+      accent: blue
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - search.highlight
+    - search.share
+    - content.code.copy
+    - content.code.annotate
+    - navigation.footer
+
+plugins:
+  - search
+  - minify:
+      minify_html: true
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - admonition
+  - pymdownx.details
+  - attr_list
+  - md_in_html
+  - toc:
+      permalink: true
+
+# Exclude files from being processed
+exclude_docs: |
+  architecture.md
+  contributing.md
+
+nav:
+  - Home: index.md
+  - Getting Started:
+    - Installation: installation.md
+    - Configuration Builder: config-builder.md
+  - Features: feature.md
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/Kecilin-Team/spy-docs
+  version:
+    provider: mike
+
+copyright: Copyright &copy; 2025 AssistX Vision Team
