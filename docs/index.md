@@ -1,18 +1,21 @@
-<div align="center">
-
 # Superpygeon 🔥
+{: .center}
 
-<img src="assets/logo.png" alt="Logo" width="200">
+<p align="center">
+  <img src="assets/logo.png" alt="Logo" width="200">
+</p>
 
-*"See beyond the ordinary, infer the extraordinary"* 
+<p align="center">
+  <em>"See beyond the ordinary, infer the extraordinary"</em>
+</p>
 
 A comprehensive computer vision inference engine supporting multiple features and use cases for image detection, classification, segmentation, and recognition - all in one unified platform 🎯.
 
-[![License](https://img.shields.io/badge/license-Apache-blue.svg)](LICENSE)
-[![Python](https://img.shields.io/badge/python-3.10+-blue.svg)](https://python.org)
-[![Docker](https://img.shields.io/badge/docker-ready-blue.svg)](https://docker.com)
-
-</div>
+<p align="center">
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache-blue.svg" alt="License"></a>
+  <a href="https://python.org"><img src="https://img.shields.io/badge/python-3.10+-blue.svg" alt="Python"></a>
+  <a href="https://docker.com"><img src="https://img.shields.io/badge/docker-ready-blue.svg" alt="Docker"></a>
+</p>
 
 ---
 
@@ -48,6 +51,6 @@ Get up and running with Superpygeon in minutes:
 
 ---
 
-<div align="center">
-  <p>Ready to get started? <a href="installation/">Install Superpygeon now →</a></p>
-</div>
+<p align="center">
+  Ready to get started? <a href="installation/">Install Superpygeon now →</a>
+</p>
