@@ -3,8 +3,6 @@ site_url: https://kecilin-team.github.io/spy-docs
 site_author: Kecilin Team
 site_description: Complete documentation for Superpygeon - AI-powered video analytics system
 
-repo_name: Kecilin-Team/spy-docs
-repo_url: https://github.com/Kecilin-Team/spy-docs
 edit_uri: edit/main/docs/
 
 theme:
@@ -80,12 +78,5 @@ nav:
     - Installation: installation.md
     - Config Builder: config-builder.md
   - Features: feature.md
-
-extra:
-  social:
-    - icon: fontawesome/brands/github
-      link: https://github.com/Kecilin-Team/spy-docs
-  version:
-    provider: mike
 
 copyright: Copyright &copy; 2025 AssistX Vision Team
