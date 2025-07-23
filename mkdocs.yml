@@ -79,4 +79,7 @@ extra:
   version:
     provider: mike
 
+extra_javascript:
+  - password-protect.js
+
 copyright: Copyright &copy; 2025 AssistX Vision Team
