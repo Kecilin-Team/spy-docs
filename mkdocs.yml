@@ -38,7 +38,9 @@ theme:
 plugins:
   - search
   - encryptcontent:
-      global_password: secret.DOCS_PASSWORD
+      password_inventory:
+        secret:
+          assistx: secret.DOCS_PASSWORD
       summary: 'This page is password protected'
       placeholder: 'Enter password'
       password_button_text: 'ENTER'

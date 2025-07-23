@@ -1,3 +1,7 @@
+---
+level: secret
+---
+
 # Superpygeon Installation Guide
 
 This guide provides step-by-step instructions for installing and running Superpygeon using Docker.
