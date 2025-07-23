@@ -38,7 +38,7 @@ plugins:
   - encryptcontent:
       password_inventory:
         secret:
-          assistx: secret.DOCS_PASSWORD
+          assistx: assistx@123
       summary: 'This page is password protected'
       placeholder: 'Enter password'
       password_button_text: 'ENTER'
