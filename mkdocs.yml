@@ -3,8 +3,6 @@ site_url: https://kecilin-team.github.io/spy-docs
 site_author: Kecilin Team
 site_description: Complete documentation for Superpygeon - AI-powered video analytics system
 
-edit_uri: edit/main/docs/
-
 theme:
   name: material
   palette:
