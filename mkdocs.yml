@@ -38,15 +38,12 @@ theme:
 plugins:
   - search
   - encryptcontent:
-      password_button_text: 'Unlock'
+      global_password: secret.DOCS_PASSWORD
       summary: 'This page is password protected'
       placeholder: 'Enter password'
+      password_button_text: 'ENTER'
       decryption_failure_message: 'Invalid password'
       encryption_info_message: 'This content is protected by password'
-      password_inventory:
-        installation.md: 'GITHUB_SECRET_PASSWORD'
-        config-builder.md: 'GITHUB_SECRET_PASSWORD'
-        feature.md: 'GITHUB_SECRET_PASSWORD'
   - minify:
       minify_html: true
 
