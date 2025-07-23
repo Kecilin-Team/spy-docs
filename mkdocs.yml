@@ -37,6 +37,13 @@ theme:
 
 plugins:
   - search
+  - encryptcontent:
+      global_password: 'your_static_password_here'
+      title_prefix: '[PROTECTED]'
+      summary: 'This page is password protected'
+      placeholder: 'Enter password'
+      decryption_failure_message: 'Invalid password'
+      encryption_info_message: 'This content is protected by password'
   - minify:
       minify_html: true
 
@@ -78,8 +85,5 @@ extra:
       link: https://github.com/Kecilin-Team/spy-docs
   version:
     provider: mike
-
-extra_javascript:
-  - password-protect.js
 
 copyright: Copyright &copy; 2025 AssistX Vision Team
