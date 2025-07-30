@@ -39,7 +39,7 @@ Ensure you have the required `compose.builder.yaml` file. If you don't have it, 
 
 2. Start the configuration builder using Docker Compose:
 ```bash
-docker-compose -f compose.builder.yaml up -d
+docker compose -f compose.builder.yaml up -d
 ```
 
 3. Access the configuration builder in your web browser:
@@ -207,13 +207,13 @@ metadata:
 
 ```bash
 # Check container status
-docker-compose -f compose.builder.yaml ps
+docker compose -f compose.builder.yaml ps
 
 # View service logs
-docker-compose -f compose.builder.yaml logs
+docker compose -f compose.builder.yaml logs
 
 # Restart services
-docker-compose -f compose.builder.yaml restart
+docker compose -f compose.builder.yaml restart
 ```
 
 #### 2. Cannot Access Web Interface
@@ -235,10 +235,10 @@ docker-compose -f compose.builder.yaml restart
 curl http://localhost:6996/health
 
 # View API logs
-docker-compose -f compose.builder.yaml logs app
+docker compose -f compose.builder.yaml logs app
 
 # Restart API service
-docker-compose -f compose.builder.yaml restart app
+docker compose -f compose.builder.yaml restart app
 ```
 
 #### 5. Configuration Export Issues
@@ -257,7 +257,7 @@ export DEBUG=true
 export LOG_LEVEL=debug
 
 # Restart with debug enabled
-docker-compose -f compose.builder.yaml up -d
+docker compose -f compose.builder.yaml up -d
 ```
 
 ---
@@ -268,10 +268,10 @@ When finished configuring:
 
 ```bash
 # Stop the config builder
-docker-compose -f compose.builder.yaml down
+docker compose -f compose.builder.yaml down
 
 # Remove containers and volumes
-docker-compose -f compose.builder.yaml down -v
+docker compose -f compose.builder.yaml down -v
 ```
 
 ---

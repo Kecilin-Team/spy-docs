@@ -8,7 +8,6 @@
 
 A comprehensive computer vision inference engine supporting multiple features and use cases for image detection, classification, segmentation, and recognition - all in one unified platform 🎯.
 
-[![License](https://img.shields.io/badge/license-Apache-blue.svg)](LICENSE)
 [![Python](https://img.shields.io/badge/python-3.10+-blue.svg)](https://python.org)
 [![Docker](https://img.shields.io/badge/docker-ready-blue.svg)](https://docker.com)
 
@@ -37,32 +36,6 @@ Superpygeon offers a comprehensive suite of computer vision features:
 - **Scalable Architecture** - Microservices-based design
 
 For detailed feature documentation and parameters, see **[Features Documentation](docs/feature.md)**.
-
-## 🚀 Quick Start
-
-### Prerequisites
-- Docker & Docker Compose
-- Git
-- Web browser for configuration
-
-### Basic Setup
-```bash
-# Clone the repository
-git clone https://github.com/Kecilin-Team/superpygeon.git
-cd superpygeon
-
-# Place your config files in config/app/
-cp your-config.yaml config/app/
-
-# Start services
-docker-compose up -d
-
-# Access streams
-# RTSP: rtsp://localhost:6554/stream
-# WebRTC: http://localhost:7902/stream
-```
-
-For complete installation instructions and troubleshooting, see **[Installation Guide](docs/installation.md)**.
 
 ## 📖 Documentation
 

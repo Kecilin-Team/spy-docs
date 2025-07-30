@@ -103,7 +103,7 @@ When prompted, enter your credentials:
 
 ```bash
 # Start all services
-docker-compose up -d
+docker compose up -d
 ```
 
 This command will start the following services:
@@ -119,13 +119,13 @@ This command will start the following services:
 
 ```bash
 # Check status of all services
-docker-compose ps
+docker compose ps
 
 # View logs from all services
-docker-compose logs -f
+docker compose logs -f
 
 # View logs from specific service
-docker-compose logs -f app-superpygeon
+docker compose logs -f app-superpygeon
 ```
 
 ### Step 4: Access the Application
@@ -143,7 +143,7 @@ Once all services are running:
 
 ```bash
 # Verify all containers are running
-docker-compose ps
+docker compose ps
 
 # Expected output should show all services as "Up"
 #     Name                   Command               State           Ports
@@ -158,10 +158,10 @@ docker-compose ps
 
 ```bash
 # Check feeder logs for video processing
-docker-compose logs feeder
+docker compose logs feeder
 
 # Check main application logs
-docker-compose logs app-superpygeon
+docker compose logs app-superpygeon
 
 # Look for messages like:
 # "Processing frame from camera: test"
@@ -190,7 +190,7 @@ ffplay rtsp://localhost:6554/<config_file_name>
 4. Restart the services:
 
 ```bash
-docker-compose restart feeder app-superpygeon
+docker compose restart feeder app-superpygeon
 ```
 
 ### Updating Existing Configuration
@@ -199,7 +199,7 @@ docker-compose restart feeder app-superpygeon
 2. Restart the specific services:
 
 ```bash
-docker-compose restart feeder app-superpygeon
+docker compose restart feeder app-superpygeon
 ```
 
 ---
@@ -228,10 +228,10 @@ free -h
 
 ```bash
 # Check model downloader logs
-docker-compose logs model-downloader
+docker compose logs model-downloader
 
 # Manually restart model downloader
-docker-compose restart model-downloader
+docker compose restart model-downloader
 
 # Check if models directory has content
 ls -la models/
@@ -241,7 +241,7 @@ ls -la models/
 
 ```bash
 # Check feeder logs for input errors
-docker-compose logs feeder
+docker compose logs feeder
 
 # Test video source manually (if using file/URL)
 ffplay your_video_source
@@ -254,7 +254,7 @@ ls -la /dev/video*
 
 ```bash
 # Check Redis status
-docker-compose logs redis
+docker compose logs redis
 
 # Test Redis connection
 docker exec -it redis redis-cli ping
@@ -277,19 +277,19 @@ docker stats
 
 ```bash
 # View all logs
-docker-compose logs
+docker compose logs
 
 # View logs with timestamps
-docker-compose logs -t
+docker compose logs -t
 
 # Follow logs in real-time
-docker-compose logs -f
+docker compose logs -f
 
 # View logs for specific service
-docker-compose logs -f app-superpygeon
+docker compose logs -f app-superpygeon
 
 # Save logs to file
-docker-compose logs > superpygeon-logs.txt
+docker compose logs > superpygeon-logs.txt
 ```
 
 ### Performance Optimization
@@ -330,13 +330,13 @@ model:
 
 ```bash
 # Stop all services
-docker-compose down
+docker compose down
 
 # Stop and remove volumes (caution: removes data)
-docker-compose down -v
+docker compose down -v
 
 # Stop and remove images
-docker-compose down --rmi all
+docker compose down --rmi all
 ```
 
 ### Emergency Stop
